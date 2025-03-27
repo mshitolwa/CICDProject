@@ -1,0 +1,317 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.139.2054.0 (24.12)+334ca1c95b576cc53924655643b0d36f21caac55"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"countries\",\"branches\",\"revenue\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "AutoDetected_5cd19b73-c55f-4ff4-9a37-980a85c763f4",
+        "fromColumn": "Country_Name",
+        "fromTable": "branches",
+        "toColumn": "Country_Name",
+        "toTable": "countries"
+      },
+      {
+        "name": "AutoDetected_6bd97a22-7b53-45e2-be11-f8f9241df5ef",
+        "fromColumn": "Branch_ID",
+        "fromTable": "revenue",
+        "toColumn": "Branch_ID",
+        "toTable": "branches"
+      }
+    ],
+    "sourceQueryCulture": "en-GB",
+    "tables": [
+      {
+        "name": "countries",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Country_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "faf85011-eff9-4ba4-a871-1a37e77e36ff",
+            "sourceColumn": "Country_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country_Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "Country",
+            "dataType": "string",
+            "lineageTag": "6bc43275-1ec0-4786-8cf2-ae1b4e1451e5",
+            "sourceColumn": "Country_Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "78b90dc7-fe05-4ac1-b63c-cfb32968c3b3",
+        "partitions": [
+          {
+            "name": "countries",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\fabric\\car_sales_dirty\\countries.csv\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Country_ID\", type text}, {\"Country_Name\", type text}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Changed Type1\", {\"Country_Name\"})",
+                "in",
+                "    #\"Removed Duplicates\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "branches",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Branch_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "07e78ca0-f4d5-4d86-ac25-8d64b7964199",
+            "sourceColumn": "Branch_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Branch_NM",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "55608eb3-c13d-4d16-a691-66d868608886",
+            "sourceColumn": "Branch_NM",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Country_Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "Country",
+            "dataType": "string",
+            "lineageTag": "3b78c689-2485-4c9c-81f3-9840f8a93643",
+            "sourceColumn": "Country_Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "257cfa1a-d46a-4481-a81a-0cc19d49e085",
+        "measures": [
+          {
+            "name": "no of branches",
+            "expression": "DISTINCTCOUNT(branches[Branch_NM])",
+            "formatString": "0",
+            "lineageTag": "6e713a99-306f-458d-91f5-932fa468e54b"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "branches",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\fabric\\car_sales_dirty\\branches.csv\"),[Delimiter=\",\", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Branch_ID\", type text}, {\"Branch_NM\", type text}, {\"Country_Name\", type text}})",
+                "in",
+                "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "revenue",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Dealer_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d73075f5-1f09-4623-81bc-4bb072224fc8",
+            "sourceColumn": "Dealer_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Model_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8de44d67-67b2-4ef9-8dd3-9bcf93b7a028",
+            "sourceColumn": "Model_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Branch_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "884b3266-9cf2-49b2-acde-037665ff8865",
+            "sourceColumn": "Branch_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Date_ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cab5732f-19f4-48ba-87bc-8e080704ad0c",
+            "sourceColumn": "Date_ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Units_Sold",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "91b72080-aacb-4f64-8853-0374ca5941db",
+            "sourceColumn": "Units_Sold",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Revenue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "acea887f-0b8c-4b33-bc9b-e298d3d093b6",
+            "sourceColumn": "Revenue",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "cea64e73-373f-4d57-87ae-c111009a4ab8",
+        "partitions": [
+          {
+            "name": "revenue",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(\"D:\\fabric\\car_sales_dirty\\revenue.csv\"),[Delimiter=\",\", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Dealer_ID\", type text}, {\"Model_ID\", type text}, {\"Branch_ID\", type text}, {\"Date_ID\", type text}, {\"Units_Sold\", Int64.Type}, {\"Revenue\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

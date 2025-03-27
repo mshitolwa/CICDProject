@@ -1,0 +1,51 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.61\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"273L\"}}}}}]}}",
+      "displayName": "Revenue",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "dff5fc2909a051a8910a",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"af00f0bfd83828c909bb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":707.3047858942065,\"y\":203.1234256926952,\"z\":0,\"width\":300.15113350125944,\"height\":113.35012594458438}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"countries.Country_Name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"countries\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Country_Name\"},\"Name\":\"countries.Country_Name\",\"NativeReferenceName\":\"Country_Name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"countries\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Country_Name\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"' United States of America'\"}}]]}}}]}}}}]}}}",
+          "filters": "[{\"name\":\"b1ed038013d345ca148b\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"countries\"}},\"Property\":\"Country_Name\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"countries\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Country_Name\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 113.35,
+          "width": 300.15,
+          "x": 707.30,
+          "y": 203.12,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"eb595a029e0ade647528\",\"layouts\":[{\"id\":0,\"position\":{\"x\":54.4080604534005,\"y\":216.72544080604533,\"z\":1000,\"width\":598.4886649874055,\"height\":198.58942065491183}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"branches.Country_Name\"},{\"queryRef\":\"branches.Branch_NM\"},{\"queryRef\":\"Sum(revenue.Units_Sold)\"},{\"queryRef\":\"Sum(revenue.Revenue)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"b\",\"Entity\":\"branches\",\"Type\":0},{\"Name\":\"r\",\"Entity\":\"revenue\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"Country_Name\"},\"Name\":\"branches.Country_Name\",\"NativeReferenceName\":\"Country_Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"b\"}},\"Property\":\"Branch_NM\"},\"Name\":\"branches.Branch_NM\",\"NativeReferenceName\":\"Branch_NM\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Units_Sold\"}},\"Function\":0},\"Name\":\"Sum(revenue.Units_Sold)\",\"NativeReferenceName\":\"Sum of Units_Sold\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"Revenue\"}},\"Function\":0},\"Name\":\"Sum(revenue.Revenue)\",\"NativeReferenceName\":\"Sum of Revenue\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 198.59,
+          "width": 598.49,
+          "x": 54.41,
+          "y": 216.73,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
